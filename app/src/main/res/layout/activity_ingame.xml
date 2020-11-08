@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GUI.activities.IngameActivity">
+
+    <TextView
+        android:id="@+id/currentPlayerDisplayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/player_1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/turnDisplayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/turn_display"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/endTurnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="onClickScoreTableButton"
+        android:text="@string/score_table"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/rollDiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickRollDiceButton"
+        android:text="@string/button_roll_dice_x3"
+        app:layout_constraintBottom_toTopOf="@+id/endTurnButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/endTurnButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+
+    <ImageButton
+        android:id="@+id/setAsideDice1"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toStartOf="@+id/setAsideDice2"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/inPlayDice1"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toStartOf="@+id/inPlayDice2"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/setAsideDice2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toStartOf="@+id/setAsideDice3"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/inPlayDice2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toStartOf="@+id/inPlayDice3"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/setAsideDice3"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.577" />
+
+    <ImageButton
+        android:id="@+id/inPlayDice3"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.577" />
+
+    <ImageButton
+        android:id="@+id/setAsideDice4"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintStart_toEndOf="@+id/setAsideDice3"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/inPlayDice4"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintStart_toEndOf="@+id/inPlayDice3"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/setAsideDice5"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/setAsideDice4"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <ImageButton
+        android:id="@+id/inPlayDice5"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:contentDescription="TODO"
+        android:onClick="onClickDice"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/inPlayDice4"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        app:layout_constraintBottom_toBottomOf="@+id/endTurnButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="372dp"
+        android:background="#c0c0c0"
+        app:layout_constraintBottom_toBottomOf="@+id/endTurnButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/save_and_quit"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="49dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

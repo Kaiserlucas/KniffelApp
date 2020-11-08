@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GUI.activities.ResultsActivity">
+
+    <TextView
+        android:id="@+id/resultsScreenTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/results"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/results" />
+
+    <Button
+        android:id="@+id/buttonViewEndResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickMainMenuButton"
+        android:text="@string/button_back_to_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonBackToMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onClickScoreTableButton"
+        android:text="@string/score_table"
+        app:layout_constraintBottom_toTopOf="@+id/buttonViewEndResults"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/playerOneNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/resultsScreenTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultsScreenTextView" />
+
+    <TextView
+        android:id="@+id/pointsText1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resultsScreenTextView"
+        app:layout_constraintTop_toBottomOf="@+id/resultsScreenTextView" />
+
+    <TextView
+        android:id="@+id/playerTwoNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/resultsScreenTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerOneNameTextView" />
+
+    <TextView
+        android:id="@+id/pointsText2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resultsScreenTextView"
+        app:layout_constraintTop_toBottomOf="@+id/pointsText1TextView" />
+
+    <TextView
+        android:id="@+id/playerThreeNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/resultsScreenTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerTwoNameTextView" />
+
+    <TextView
+        android:id="@+id/pointsText3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resultsScreenTextView"
+        app:layout_constraintTop_toBottomOf="@+id/pointsText2TextView" />
+
+    <TextView
+        android:id="@+id/playerFourNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/resultsScreenTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerThreeNameTextView" />
+
+    <TextView
+        android:id="@+id/pointsText4TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/resultsScreenTextView"
+        app:layout_constraintTop_toBottomOf="@+id/pointsText3TextView" />
+
+    <TextView
+        android:id="@+id/playerOneScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/pointsText1TextView"
+        app:layout_constraintTop_toBottomOf="@+id/resultsScreenTextView" />
+
+    <TextView
+        android:id="@+id/playerTwoScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/pointsText2TextView"
+        app:layout_constraintTop_toBottomOf="@+id/playerOneScoreTextView" />
+
+    <TextView
+        android:id="@+id/playerThreeScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/pointsText3TextView"
+        app:layout_constraintTop_toBottomOf="@+id/playerTwoScoreTextView" />
+
+    <TextView
+        android:id="@+id/playerFourScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/pointsText4TextView"
+        app:layout_constraintTop_toBottomOf="@+id/playerThreeScoreTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

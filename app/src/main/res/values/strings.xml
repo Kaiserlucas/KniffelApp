@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Kniffel</string>
+    <string name="button_load_game">Spiel laden</string>
+    <string name="button_host_game">Spiel erstellen</string>
+    <string name="button_join_game">Spiel beitreten</string>
+    <string name="button_start_game">Spiel starten</string>
+    <string name="player_1">Spieler 1</string>
+    <string name="player_2">Spieler 2</string>
+    <string name="player_3">Spieler 3</string>
+    <string name="player_4">Spieler 4</string>
+    <string name="looking_for_player">Suche nach Mitspieler…</string>
+    <string name="found_player">Warte auf Spielstart…</string>
+    <string name="button_roll_dice_x3">Würfeln (3 übrig)</string>
+    <string name="button_roll_dice_x2">Würfeln (2 übrig)</string>
+    <string name="button_roll_dice_x1">Würfeln (1 übrig)</string>
+    <string name="button_roll_dice_x0">Keine Würfe übrig</string>
+    <string name="button_end_turn">Zug beenden</string>
+    <string name="turn_display">Am Zug</string>
+    <string name="game_ended">Spiel vorbei</string>
+    <string name="empty_field">/</string>
+    <string name="score_table">Punktetabelle</string>
+    <string name="button_back">Zurück</string>
+    <string name="button_back_to_menu">Zurück zum Hauptmenü</string>
+    <string name="points">Punkte</string>
+    <string name="results">Endergebnisse</string>
+    <string name="save_and_quit">Speichern und beenden</string>
+    <string name="game_interrupted">Spiel unterbrochen</string>
+    <string name="points_na">N/A</string>
+</resources>

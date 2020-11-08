@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/score_table_parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Kategorie" />
+
+    <TextView
+        android:id="@+id/playerOneScoresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_toLeftOf="@+id/playerTwoScoresTextView"
+        android:textSize="30sp"
+        android:text="@string/empty_field" />
+
+    <TextView
+        android:id="@+id/playerTwoScoresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_toLeftOf="@+id/playerThreeScoresTextView"
+        android:textSize="30sp"
+        android:text="@string/empty_field" />
+
+    <TextView
+        android:id="@+id/playerThreeScoresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_toLeftOf="@+id/playerFourScoresTextView"
+        android:textSize="30sp"
+        android:text="@string/empty_field" />
+
+    <TextView
+        android:id="@+id/playerFourScoresTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_alignParentRight="true"
+        android:textSize="30sp"
+        android:text="@string/empty_field" />
+</RelativeLayout>
