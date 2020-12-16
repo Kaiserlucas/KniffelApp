@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kniffel.GUI.helper.EngineStorage;
 import com.example.kniffel.R;
@@ -25,6 +26,9 @@ import kniffel.protocolBinding.Commands;
 
 public class HostGameActivity extends AppCompatActivity implements Notifiable {
 
+    private static final String NO_BLUETOOTH_ADAPTER_MESSAGE = "Kein Bluetooth Adapter gefunden. Spiel kann nicht gestartet werden.";
+    private static final String CONNECTION_LOST_MESSAGE = "Verbindungsfehler. Nicht alle Spieler konnten benachrichtigt werden, dass das Spiel vorbei ist.";
+    private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
     private int numberOfPlayers;
     private int ownPlayerID;
     private DataInputStream[] dis;
@@ -55,6 +59,12 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        connection.stopConnection();
+    }
+
+    @Override
     public void onNotify() {
         //Reads the required data from the connection
         try {
@@ -62,7 +72,7 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
             dos[numberOfPlayers - 1] = connection.getDataOutputStream();
             names[numberOfPlayers] = connection.getName();
         } catch(IOException e) {
-            //TODO: Should probably have an error message too
+            Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
             finish();
         }
          numberOfPlayers++;
@@ -99,6 +109,12 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
 
     }
 
+    @Override
+    public void finishSignal() {
+        Toast.makeText(this, GAME_ABORTED_MESSAGE, Toast.LENGTH_LONG).show();
+        finish();
+    }
+
     public void onClickStartGameButton(View view) {
 
         if(numberOfPlayers > 1) {
@@ -120,6 +136,8 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
             EngineStorage.facadeStorage.put("Facade", facade);
             notifyOtherPlayersOfGameStart();
 
+            connection.stopConnection();
+
             startActivity(intent);
 
             finish();
@@ -131,10 +149,7 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
         try {
             connection = new BluetoothServer(this);
         } catch (IOException e) {
-            //TODO: Handle correctly (This is thrown if the device has no bluetooth adapter)
-            finish();
-        } catch (InterruptedException e) {
-            //TODO: Handle correctly (This is thrown if something goes horribly wrong with the accept)
+            Toast.makeText(this, NO_BLUETOOTH_ADAPTER_MESSAGE, Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -151,10 +166,9 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
                 //This is the other player's ID
                 currentDos.writeInt(i + 2);
             } catch(IOException e) {
-                //TODO: Should probably have an error message
+                Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
                 finish();
             }
         }
-
     }
 }

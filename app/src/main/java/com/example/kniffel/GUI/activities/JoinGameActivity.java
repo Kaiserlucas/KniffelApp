@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kniffel.GUI.helper.EngineStorage;
 import com.example.kniffel.GUI.helper.StartGameListenerThread;
@@ -21,6 +22,7 @@ import kniffel.KniffelFacadeFactory;
 
 public class JoinGameActivity extends AppCompatActivity implements Notifiable {
 
+    private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
     private BluetoothConnection connection;
     private DataInputStream[] dis;
     private DataOutputStream[] dos;
@@ -49,6 +51,12 @@ public class JoinGameActivity extends AppCompatActivity implements Notifiable {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        connection.stopConnection();
+    }
+
+    @Override
     public void onNotify() {
         //On the first notify, prepare everything for network communication and listen for the game start
         //On the second notify, prepare the engine and actually start the game
@@ -70,7 +78,6 @@ public class JoinGameActivity extends AppCompatActivity implements Notifiable {
             playerName = findViewById(R.id.foundPlayerNameTextView);
             playerNameMessage = name;
 
-            //TODO: Figure out why this works
             new Thread() {
                 public void run() {
                     runOnUiThread(new Runnable() {
@@ -110,6 +117,12 @@ public class JoinGameActivity extends AppCompatActivity implements Notifiable {
             finish();
         }
 
+    }
+
+    @Override
+    public void finishSignal() {
+        Toast.makeText(this, GAME_ABORTED_MESSAGE, Toast.LENGTH_LONG).show();
+        finish();
     }
 
 }

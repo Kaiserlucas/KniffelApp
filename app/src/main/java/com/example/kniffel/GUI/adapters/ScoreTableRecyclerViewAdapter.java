@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kniffel.R;
 
 import java.io.IOException;
 
-import kniffel.data.ScoreTableRows;
 import kniffel.gamelogic.IllegalStateException;
 import kniffel.gamelogic.KniffelException;
 import kniffel.KniffelFacade;
@@ -53,10 +53,10 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
         try {
             holder.categoryText.setText(facade.getScoreTableRowName(position));
         } catch (KniffelException e) {
-            //TODO: Handle
+            //Shouldn't be thrown.
+            throw new RuntimeException();
         }
 
-        //TODO: Check if this still works
         //Sets scores
         for(int i = 1; i <= facade.getNumberOfPlayers(); i++) {
             try {
@@ -80,7 +80,8 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
 
                 }
             } catch (KniffelException e) {
-                //TODO: Handle
+                //Shouldn't be thrown.
+                throw new RuntimeException();
             }
         }
 
@@ -88,17 +89,21 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String OPPONENT_TURN_MESSAGE = "Gegenspieler ist am Zug.";
+                String PLAYER_SET_INVALID_ROW_MESSAGE = "Diese Zeile kann nicht gewählt werden.";
+                String CONNECTION_LOST_MESSAGE = "Verbindungsfehler. Spiel muss beendet werden";
+
                 try {
                     facade.endTurn(position);
                     Activity activity = (Activity) context;
                     activity.finish();
                 } catch (IllegalStateException e) {
-                    //TODO: Handle
+                    Toast.makeText(context, OPPONENT_TURN_MESSAGE, Toast.LENGTH_LONG).show();
                 } catch (KniffelException e) {
-                    //TODO: Handle
-                    //Is thrown if the player attempts to set Bonus, Upper Total, Lower Total or Grand Total
+                    Toast.makeText(context, PLAYER_SET_INVALID_ROW_MESSAGE, Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
-                    //TODO: Handle
+                    Toast.makeText(context, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
+                    //TODO: End game
                 }
             }
         });
@@ -106,7 +111,7 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
 
     @Override
     public int getItemCount() {
-        return ScoreTableRows.SCORE_TABLE_DIM;
+        return facade.SCORE_TABLE_DIM;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

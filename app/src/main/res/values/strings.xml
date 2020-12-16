@@ -26,4 +26,9 @@
     <string name="save_and_quit">Speichern und beenden</string>
     <string name="game_interrupted">Spiel unterbrochen</string>
     <string name="points_na">N/A</string>
+    <string name="delete_game">Speicherstand löschen</string>
+    <string name="button_delete_game">Spielstand löschen</string>
+    <string name="dont_save">Beenden ohne Speichern</string>
+    <string name="save_game">Spiel speichern</string>
+    <string name="enter_save_name">Name für das gespeicherte Spiel:</string>
 </resources>

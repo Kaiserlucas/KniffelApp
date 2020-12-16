@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kniffel.GUI.helper.EngineStorage;
 import com.example.kniffel.R;
@@ -16,6 +17,7 @@ import kniffel.KniffelFacade;
 
 public class ResultsActivity extends AppCompatActivity {
 
+    private static final String TABLE_ROW_EXCEPTION_MESSAGE = "Wenn diese Fehlermeldung erscheint bin ich verwirrt.";
     private KniffelFacade facade;
 
     @Override
@@ -32,7 +34,7 @@ public class ResultsActivity extends AppCompatActivity {
             try {
                 scores[i] = facade.getScore(ScoreTableRows.GRAND_TOTAL, i+1);
             } catch (KniffelException e) {
-                //TODO: Handle
+                Toast.makeText(this, TABLE_ROW_EXCEPTION_MESSAGE, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -69,9 +71,10 @@ public class ResultsActivity extends AppCompatActivity {
 
         boolean gameInterrupted = false;
 
-        for(int i = 0; i < scores.length; i++) {
-            if(scores[i] == -1) {
+        for (int score : scores) {
+            if (score == -1) {
                 gameInterrupted = true;
+                break;
             }
         }
 

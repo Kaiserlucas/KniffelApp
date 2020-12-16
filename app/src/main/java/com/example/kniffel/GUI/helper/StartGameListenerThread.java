@@ -9,6 +9,7 @@ import kniffel.protocolBinding.Commands;
 
 public class StartGameListenerThread implements Runnable {
 
+    private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
     private Notifiable activity;
     private DataInputStream dis;
 
@@ -28,10 +29,10 @@ public class StartGameListenerThread implements Runnable {
             if(command == Commands.START_GAME) {
                 activity.onNotify();
             } else {
-                //TODO: Handle (Print error and return to main activity)
+                activity.finishSignal();
             }
         } catch (IOException e) {
-            //TODO: (Print error and return to main activity)
+            activity.finishSignal();
         }
 
     }

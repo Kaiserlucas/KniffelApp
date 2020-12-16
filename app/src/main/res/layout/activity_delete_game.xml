@@ -6,17 +6,17 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/load_game_recycler_view"
+        android:id="@+id/delete_game_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCancelLoad"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCancelDeletion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loadGameHeadlineTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteGameHeadlineTextView" />
 
     <Button
-        android:id="@+id/buttonCancelLoad"
+        android:id="@+id/buttonCancelDeletion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -27,17 +27,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/load_game_recycler_view" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_game_recycler_view" />
 
     <TextView
-        android:id="@+id/loadGameHeadlineTextView"
+        android:id="@+id/deleteGameHeadlineTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/button_load_game"
+        android:text="@string/delete_game"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/load_game_recycler_view"
+        app:layout_constraintBottom_toTopOf="@+id/delete_game_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

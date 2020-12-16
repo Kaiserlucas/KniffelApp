@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".GUI.activities.HostLoadedGameActivity"></activity>
+        <activity android:name=".GUI.activities.SaveGameActivity" />
+        <activity android:name=".GUI.activities.DeleteGameActivity" />
         <activity
             android:name=".GUI.activities.ResultsActivity"
             android:screenOrientation="portrait" />
@@ -31,8 +34,9 @@
         <activity
             android:name=".GUI.activities.HostGameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".GUI.activities.MainActivity"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".GUI.activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

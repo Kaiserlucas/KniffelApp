@@ -50,8 +50,13 @@ public class BluetoothClient implements BluetoothConnection, Runnable {
     }
 
     @Override
-    public String getName() throws IOException {
+    public String getName() {
         return socket.getRemoteDevice().getName();
+    }
+
+    @Override
+    public void stopConnection() {
+        connectThread.interrupt();
     }
 
     @Override
@@ -68,9 +73,11 @@ public class BluetoothClient implements BluetoothConnection, Runnable {
                             try {
                                 socket.connect();
                                 notConnected = false;
-                            } catch(Exception e) {
-                                //Just a timeout on establishing a connection
-                                //Doesn't need to be handled.
+                            } catch(IOException e) {
+                                if(connectThread.isInterrupted()) {
+                                    notConnected = false;
+                                    break;
+                                }
                             }
                         }
                     }

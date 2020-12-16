@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 
-import com.example.kniffel.GUI.activities.HostGameActivity;
 import com.example.kniffel.GUI.activities.Notifiable;
 
 import java.io.DataInputStream;
@@ -23,7 +22,7 @@ public class BluetoothServer implements BluetoothConnection, Runnable {
     private BluetoothAdapter bluetoothAdapter;
     private final Notifiable activity;
 
-    public BluetoothServer(Notifiable activity) throws IOException, InterruptedException {
+    public BluetoothServer(Notifiable activity) throws IOException {
         this.activity = activity;
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //Make sure the bluetooth adapter works and is turned on
@@ -57,8 +56,18 @@ public class BluetoothServer implements BluetoothConnection, Runnable {
     }
 
     @Override
-    public String getName() throws IOException {
+    public String getName() {
         return socket.getRemoteDevice().getName();
+    }
+
+    @Override
+    public void stopConnection() {
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //TODO: Handle
+        }
     }
 
     @Override
@@ -67,12 +76,13 @@ public class BluetoothServer implements BluetoothConnection, Runnable {
             serverSocket = bluetoothAdapter.listenUsingRfcommWithServiceRecord(serviceName, uuid);
             socket = serverSocket.accept();
             serverSocket.close();
+
+            //Sends notification that the connection was established successfully
+            activity.onNotify();
         } catch(IOException e) {
             //Something went wrong
             acceptThread.interrupt();
+            //TODO: Delete
         }
-        //Sends notification that the connection was established successfully
-        activity.onNotify();
-
     }
 }

@@ -33,7 +33,7 @@ public class ScoreTableActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
+        // specify an adapter
         adapter = new ScoreTableRecyclerViewAdapter(this, facade);
         recyclerView.setAdapter(adapter);
     }

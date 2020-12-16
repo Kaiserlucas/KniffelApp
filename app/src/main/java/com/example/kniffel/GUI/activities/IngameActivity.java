@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kniffel.GUI.helper.EngineStorage;
 import com.example.kniffel.GUI.helper.GameStateChangeObserver;
@@ -14,15 +15,20 @@ import com.example.kniffel.R;
 
 import java.io.IOException;
 
-import kniffel.data.ScoreTableRows;
 import kniffel.gamelogic.GameState;
 import kniffel.gamelogic.IllegalStateException;
-import kniffel.gamelogic.KniffelException;
 import kniffel.KniffelFacade;
 
 public class IngameActivity extends AppCompatActivity implements Notifiable {
 
+
+    private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
     private KniffelFacade facade;
+    private static final String BACKBUTTON_MESSAGE = "Drücke diese Schaltfläche 3 Mal um das Spiel zu beenden.";
+    private static final String END_GAME_ERROR_MESSAGE = "Verbindungsfehler. Nicht alle Spieler konnten benachrichtigt werden, dass das Spiel vorbei ist.";
+    private static final String OPPONENT_TURN_MESSAGE = "Ein Gegenspieler ist am Zug.";
+    private static final String CONNECTION_LOST_MESSAGE = "Verbindungsfehler. Spiel wird beendet.";
+    private int backButtonTimesPressed = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +55,28 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
         //Notifies other players that the game is over
         if(facade.getState() != GameState.GameEnded) {
             try {
-                facade.saveGame();
+                facade.endGame();
             } catch (IOException e) {
-                //TODO: Handle
+                Toast.makeText(this, END_GAME_ERROR_MESSAGE, Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    //Needs to press back button three times to prevent accidentally ending the game
     @Override
     public void onBackPressed() {
-        //Disable back button for this activity to prevent accidentally tapping it.
+        if(backButtonTimesPressed == 2) {
+            finish();
+        } else {
+            backButtonTimesPressed++;
+            Toast.makeText(this, BACKBUTTON_MESSAGE, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void onClickSaveAndQuitButton(View view) {
+        Intent intent = new Intent(this, SaveGameActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onClickRollDiceButton(View view) {
@@ -66,28 +84,13 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
             try {
                 facade.rollDice();
             } catch (IllegalStateException e) {
-                //TODO: Handle
+                Toast.makeText(this, OPPONENT_TURN_MESSAGE, Toast.LENGTH_LONG).show();
             } catch (IOException e) {
-                //TODO: Handle
+                Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
+                finish();
             }
             updateGUI();
         }
-    }
-
-    public void onClickEndTurnDebugButton(View view) {
-        if(facade.getActivePlayer() == facade.getOwnPlayerID() && facade.getRollsRemaining() < 3) {
-            try {
-                //TODO: Get table row somehow
-                facade.endTurn(ScoreTableRows.CHANCE);
-            } catch (IllegalStateException e) {
-                //TODO: Handle
-            } catch (KniffelException e) {
-                //TODO: Handle
-            } catch (IOException e) {
-                //TODO: Handle
-            }
-        }
-        updateGUI();
     }
 
     public void onClickDice(View view) {
@@ -119,9 +122,10 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
 
                 }
             } catch (IllegalStateException e) {
-                //TODO: Handle
+                Toast.makeText(this, OPPONENT_TURN_MESSAGE, Toast.LENGTH_LONG).show();
             } catch (IOException e) {
-                //TODO: Handle
+                Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
+                finish();
             }
 
             updateGUI();
@@ -295,7 +299,6 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
 
     @Override
     public void onNotify() {
-        //TODO: Figure out why this works
         new Thread() {
             public void run() {
                 runOnUiThread(new Runnable() {
@@ -307,5 +310,11 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
 
             }
         }.start();
+    }
+
+    @Override
+    public void finishSignal() {
+        Toast.makeText(this, GAME_ABORTED_MESSAGE, Toast.LENGTH_LONG).show();
+        finish();
     }
 }
