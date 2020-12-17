@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,12 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
         assert facade != null;
 
         facade.addObserver(new GameStateChangeObserver(this));
+
+        //Hide save and quit button for non-host players
+        if(facade.getOwnPlayerID() != 1) {
+            Button button = findViewById(R.id.saveAndQuitIngameButton);
+            button.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -151,13 +158,6 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
         drawDiceImages();
         displayCurrentPlayer();
 
-        //TODO: Not sure if this gets too annoying after a while
-        //If it's the start of a new turn show the score table to every player
-        //if(facade.getDiceValues()[0] == -1) {
-            //Intent intent = new Intent(this, ScoreTableActivity.class);
-            //startActivity(intent);
-        //}
-
     }
 
     private void displayCurrentPlayer() {
@@ -180,7 +180,7 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
                 currentPlayerDisplay.setText(R.string.player_4);
                 break;
             default:
-                throw new RuntimeException("Unknown player ID");
+                throw new RuntimeException("Unknown player ID "+facade.getActivePlayer());
         }
     }
 
@@ -292,7 +292,7 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
                     imageButtonToUnset.setImageResource(android.R.color.transparent);
                     break;
                 default:
-                    throw new RuntimeException("Unknown Dice Value");
+                    throw new RuntimeException("Unknown Dice Value "+diceValues[i]);
             }
         }
     }

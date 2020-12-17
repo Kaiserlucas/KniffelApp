@@ -85,6 +85,13 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
             }
         }
 
+        if(facade.getNumberOfPlayers() <= 3) {
+            holder.playerFourScores.setText("");
+            if(facade.getNumberOfPlayers() < 3) {
+                holder.playerThreeScores.setText("");
+            }
+        }
+
         //Handles setting a score at the end of your turn
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override

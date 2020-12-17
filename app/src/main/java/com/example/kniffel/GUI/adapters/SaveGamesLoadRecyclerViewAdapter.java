@@ -1,5 +1,6 @@
 package com.example.kniffel.GUI.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -66,6 +67,8 @@ public class SaveGamesLoadRecyclerViewAdapter extends RecyclerView.Adapter<SaveG
                 try {
                     scoreTable = persistence.loadGame(filenames[position]);
                     EngineStorage.scoreTable = scoreTable;
+                    if(context instanceof Activity){
+                        ((Activity)context).finish(); }
                     Intent intent = new Intent (v.getContext(), HostLoadedGameActivity.class);
                     v.getContext().startActivity(intent);
                 } catch (IOException e) {

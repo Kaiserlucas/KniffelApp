@@ -2,6 +2,7 @@ package com.example.kniffel.GUI.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,20 @@ public class ScoreTableActivity extends AppCompatActivity {
         // specify an adapter
         adapter = new ScoreTableRecyclerViewAdapter(this, facade);
         recyclerView.setAdapter(adapter);
+
+        TextView textView = findViewById(R.id.player1TextView);
+        textView.setText(facade.getPlayerNames()[0]);
+        textView = findViewById(R.id.player2TextView);
+        textView.setText(facade.getPlayerNames()[1]);
+
+        if(facade.getNumberOfPlayers() >= 3) {
+            textView = findViewById(R.id.player3TextView);
+            textView.setText(facade.getPlayerNames()[2]);
+            if(facade.getNumberOfPlayers() == 4) {
+                textView = findViewById(R.id.player4TextView);
+                textView.setText(facade.getPlayerNames()[3]);
+            }
+        }
     }
 
     public void onClickBackButton(View view) {

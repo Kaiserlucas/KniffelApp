@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.kniffel.GUI.adapters.SaveGamesDeleteRecyclerViewAdapter;
 import com.example.kniffel.GUI.adapters.SaveGamesLoadRecyclerViewAdapter;
 import com.example.kniffel.R;
 
@@ -27,7 +26,7 @@ public class LoadGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_load_game);
 
         //Initialize RecyclerView
-        recyclerView = findViewById(R.id.load_game_recycler_view);
+        recyclerView = findViewById(R.id.score_table_recycler_view);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);

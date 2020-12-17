@@ -91,7 +91,7 @@ public class HostGameActivity extends AppCompatActivity implements Notifiable {
                 textView = findViewById(R.id.playerNameDisplay2TextView);
                 break;
             case 4:
-                textView = findViewById(R.id.playerIDDisplay3TextView);
+                textView = findViewById(R.id.playerNameDisplay3TextView);
                 break;
         }
 
