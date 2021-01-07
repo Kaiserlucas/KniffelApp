@@ -110,7 +110,11 @@ public class ScoreTableRecyclerViewAdapter extends RecyclerView.Adapter<ScoreTab
                     Toast.makeText(context, PLAYER_SET_INVALID_ROW_MESSAGE, Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
                     Toast.makeText(context, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
-                    //TODO: End game
+                    try {
+                        facade.endGame();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });

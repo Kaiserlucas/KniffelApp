@@ -38,8 +38,6 @@ public class ResultsActivity extends AppCompatActivity {
             }
         }
 
-        //TODO: Sort scores and names
-
         TextView textView;
         //Draw player 1 name
         textView = findViewById(R.id.playerOneNameTextView);

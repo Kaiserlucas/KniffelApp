@@ -66,7 +66,6 @@ public class BluetoothServer implements BluetoothConnection, Runnable {
             serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
-            //TODO: Handle
         }
     }
 
@@ -82,7 +81,6 @@ public class BluetoothServer implements BluetoothConnection, Runnable {
         } catch(IOException e) {
             //Something went wrong
             acceptThread.interrupt();
-            //TODO: Delete
         }
     }
 }

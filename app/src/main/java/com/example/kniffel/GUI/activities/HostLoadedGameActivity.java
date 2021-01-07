@@ -29,7 +29,7 @@ import kniffel.protocolBinding.Commands;
 public class HostLoadedGameActivity extends AppCompatActivity implements Notifiable {
 
     private static final String NO_BLUETOOTH_ADAPTER_MESSAGE = "Kein Bluetooth Adapter gefunden. Spiel kann nicht gestartet werden.";
-    private static final String CONNECTION_LOST_MESSAGE = "Verbindungsfehler. Nicht alle Spieler konnten benachrichtigt werden, dass das Spiel vorbei ist.";
+    private static final String CONNECTION_LOST_MESSAGE = "Verbindungsfehler.";
     private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
     private int numberOfPlayers;
     private int expectedPlayers;
@@ -140,7 +140,7 @@ public class HostLoadedGameActivity extends AppCompatActivity implements Notifia
             try {
                 connection.getDataOutputStream().writeInt(-1);
             } catch (IOException e) {
-                //TODO
+                Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
             }
             startNewConnectionAttempt();
         }
@@ -192,7 +192,6 @@ public class HostLoadedGameActivity extends AppCompatActivity implements Notifia
                 //Write loaded game scores
                 for(int j = 0; j < expectedPlayers; j++) {
                     for(int k = 0; k < KniffelFacade.SCORE_TABLE_DIM; k++) {
-                        //TODO: If things broke this is where I changed something
                         currentDos.writeInt(loadedTable.getScore(k, j+1));
                     }
                 }

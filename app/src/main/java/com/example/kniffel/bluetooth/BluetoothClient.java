@@ -63,7 +63,6 @@ public class BluetoothClient implements BluetoothConnection, Runnable {
     public void run() {
         boolean notConnected = true;
         do {
-            bluetoothAdapter.startDiscovery();
             try {
                 Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
                 if (pairedDevices.size() > 0) {

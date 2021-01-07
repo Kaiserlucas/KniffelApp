@@ -25,6 +25,7 @@ import kniffel.data.ScoreTableImpl;
 public class JoinGameActivity extends AppCompatActivity implements Notifiable {
 
     private static final String GAME_ABORTED_MESSAGE = "Spiel abgebrochen.";
+    private static final String CONNECTION_LOST_MESSAGE = "Verbindungsfehler.";
     private BluetoothConnection connection;
     private DataInputStream[] dis;
     private DataOutputStream[] dos;
@@ -133,7 +134,7 @@ public class JoinGameActivity extends AppCompatActivity implements Notifiable {
                         scores[j][i] = dis[0].readInt();
                     } catch (IOException e) {
                         e.printStackTrace();
-                        //TODO: Handle
+                        Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -141,7 +142,7 @@ public class JoinGameActivity extends AppCompatActivity implements Notifiable {
             try {
                 nextPlayer = dis[0].readInt();
             } catch (IOException e) {
-                //TODO: Handle
+                Toast.makeText(this, CONNECTION_LOST_MESSAGE, Toast.LENGTH_LONG).show();
             }
 
             ScoreTable scoreTable = new ScoreTableImpl(numberOfPlayers, nextPlayer, names, ownPlayerID, scores);

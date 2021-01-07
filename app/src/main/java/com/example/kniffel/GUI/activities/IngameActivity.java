@@ -153,7 +153,6 @@ public class IngameActivity extends AppCompatActivity implements Notifiable {
             finish();
         }
 
-        //TODO: Write own player name
         setRollsRemainingText();
         drawDiceImages();
         displayCurrentPlayer();
